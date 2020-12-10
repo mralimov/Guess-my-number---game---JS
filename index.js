@@ -19,8 +19,12 @@ const btnCheck = document
       document.querySelector('body').style.backgroundColor = '#18cf3f';
       document.querySelector('.number').style.width = '30rem';
       document.querySelector('.message').textContent = '🎉 Correct Number!';
-      highScore++;
-      document.querySelector('.highscore').textContent = highScore;
+
+      if (score > highScore) {
+        console.log(score, highScore);
+        highScore = score;
+        document.querySelector('.highscore').textContent = highScore;
+      }
     } else if (inputNum > randomNumber) {
       if (score > 1) {
         document.querySelector('.message').textContent = '📈 Too high!';
