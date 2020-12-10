@@ -1,32 +1,42 @@
 'use strict';
+
+//Random numbers
 let randomNumber = Math.floor(Math.random() * 20) + 1;
 
 let score = 20;
 let highScore = 0;
 
+//Refactored Message dispalys
 const showMessage = function (message) {
   document.querySelector('.message').textContent = message;
 };
-// const message = document.querySelector('.message');
+
+// Main game logic and structure
 const btnCheck = document
   .querySelector('.check')
   .addEventListener('click', function () {
     const inputNum = Number(document.querySelector('.guess').value);
 
+    //No number message
     if (!inputNum) {
-      //   document.querySelector('body').style.backgroundColor = 'red';
       showMessage('⛔️ No number!');
-    } else if (inputNum === randomNumber) {
+    }
+    //Winning the game
+    else if (inputNum === randomNumber) {
       document.querySelector('.number').textContent = randomNumber;
       document.querySelector('body').style.backgroundColor = '#18cf3f';
       document.querySelector('.number').style.width = '30rem';
       showMessage('🎉 Correct Number!');
 
+      //Setting Score to HighScore
       if (score > highScore) {
         highScore = score;
         document.querySelector('.highscore').textContent = highScore;
       }
-    } else if (inputNum != randomNumber) {
+    }
+
+    //If numbers don't match logic with message
+    else if (inputNum != randomNumber) {
       if (score > 1) {
         showMessage(inputNum > randomNumber ? '📈 Too high!' : '📉 Too low!');
         score--;
@@ -35,22 +45,18 @@ const btnCheck = document
         showMessage('💥 You lost the game!');
         document.querySelector('.score').textContent = 0;
       }
-      // } else if (inputNum < randomNumber) {
-      //   if (score > 1) {
-      //     document.querySelector('.message').textContent = '📉 Too low!';
-      //     score--;
-      //     document.querySelector('.score').textContent = score;
-      //   } else {
-      //     document.querySelector('.message').textContent =
-      //       '💥 You lost the game!';
-      //     document.querySelector('.score').textContent = 0;
-      //   }
-      // }
     }
   });
 
-//🎉 Correct Number!
-//📈 Too high!
-//💥 You lost the game!
-//📉 Too low!
-//⛔️ No number!
+//AGAIN button
+document.querySelector('.again').addEventListener('click', function () {
+  randomNumber = Math.floor(Math.random() * 20) + 1;
+
+  score = 20;
+  showMessage('Start guessing...');
+  document.querySelector('.score').textContent = score;
+  document.querySelector('body').style.backgroundColor = '#2104c9';
+  document.querySelector('.number').textContent = '?';
+  document.querySelector('.number').style.width = '15rem';
+  document.querySelector('.guess').value = '';
+});
