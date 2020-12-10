@@ -1,7 +1,6 @@
 'use strict';
 
 let randomNumber = Math.floor(Math.random() * 20) + 1;
-document.querySelector('.number').textContent = randomNumber;
 
 let score = 20;
 let highScore = 0;
@@ -11,11 +10,13 @@ const btnCheck = document
   .querySelector('.check')
   .addEventListener('click', function () {
     const inputNum = Number(document.querySelector('.guess').value);
+    document.querySelector('.number');
     console.log(inputNum);
     if (!inputNum) {
       //   document.querySelector('body').style.backgroundColor = 'red';
       document.querySelector('.message').textContent = '⛔️ No number!';
     } else if (inputNum === randomNumber) {
+      document.querySelector('.number').textContent = randomNumber;
       document.querySelector('body').style.backgroundColor = '#18cf3f';
       document.querySelector('.number').style.width = '30rem';
       document.querySelector('.message').textContent = '🎉 Correct Number!';
