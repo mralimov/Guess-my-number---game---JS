@@ -13,8 +13,11 @@ const btnCheck = document
     const inputNum = Number(document.querySelector('.guess').value);
     console.log(inputNum);
     if (!inputNum) {
+      //   document.querySelector('body').style.backgroundColor = 'red';
       document.querySelector('.message').textContent = '⛔️ No number!';
     } else if (inputNum === randomNumber) {
+      document.querySelector('body').style.backgroundColor = '#18cf3f';
+      document.querySelector('.number').style.width = '30rem';
       document.querySelector('.message').textContent = '🎉 Correct Number!';
       highScore++;
       document.querySelector('.highscore').textContent = highScore;
